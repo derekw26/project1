@@ -1,3 +1,8 @@
+User.destroy_all
+u1 = User.create :email => 'derek.wei94@gmail.com', :password => 'asdasd', :admin => true
+
+puts "#{ User.count } users created"
+
 Exercise.destroy_all
 e1 = Exercise.create :name => 'Bench Press', :equipment => 'Barbell', :body_part => 'Chest, Triceps, Shoulders'
 e2 = Exercise.create :name => 'Back Squat', :equipment => 'Barbell', :body_part => 'Legs, Core'
@@ -15,9 +20,9 @@ e12 = Exercise.create :name => 'Plank', :equipment => 'None', :body_part => 'Cor
 puts "#{ Exercise.count } exercises created"
 
 Workout.destroy_all
-w1 = Workout.create :name => 'Compound Lifts'
-w2 = Workout.create :name => 'Arms and Shoulders'
-w3 = Workout.create :name => 'Core Circuit'
+w1 = Workout.create :name => 'Compound Lifts', :user_id => 1
+w2 = Workout.create :name => 'Arms and Shoulders', :user_id => 1
+w3 = Workout.create :name => 'Core Circuit', :user_id => 1
 
 puts "#{ Workout.count } workouts created"
 
