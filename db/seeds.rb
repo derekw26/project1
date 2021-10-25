@@ -1,7 +1,30 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
+Exercise.destroy_all
+e1 = Exercise.create :name => 'Bench Press', :equipment => 'Barbell', :body_part => 'Chest, Triceps, Shoulders'
+e2 = Exercise.create :name => 'Back Squat', :equipment => 'Barbell', :body_part => 'Legs, Core'
+e3 = Exercise.create :name => 'Deadlift', :equipment => 'Barbell', :body_part => 'Legs, Back, Core'
+e4 = Exercise.create :name => 'Bicep Curl', :equipment => 'Dumbbell', :body_part => 'Biceps'
+e5 = Exercise.create :name => 'Tricep Extension', :equipment => 'Dumbbell', :body_part => 'Triceps'
+e6 = Exercise.create :name => 'Shoulder Press', :equipment => 'Dumbbell, Barbell', :body_part => 'Shoulders'
+e7 = Exercise.create :name => 'Push Up', :equipment => 'None', :body_part => 'Chest, Triceps, Shoulders'
+e8 = Exercise.create :name => 'Sit Up', :equipment => 'None', :body_part => 'Core'
+e9 = Exercise.create :name => 'Mountain Climbers', :equipment => 'None', :body_part => 'Core, Legs'
+e10 = Exercise.create :name => 'Bird Dog', :equipment => 'None', :body_part => 'Core, Lower Back'
+e11 = Exercise.create :name => 'Dead Bug', :equipment => 'None', :body_part => 'Core'
+e12 = Exercise.create :name => 'Plank', :equipment => 'None', :body_part => 'Core'
+
+puts "#{ Exercise.count } exercises created"
+
+Workout.destroy_all
+w1 = Workout.create :name => 'Compound Lifts'
+w2 = Workout.create :name => 'Arms and Shoulders'
+w3 = Workout.create :name => 'Core Circuit'
+
+puts "#{ Workout.count } workouts created"
+
+# associations
+
+# w1.exercises << e1 << e2 << e3 << e12
+# w2.exercises << e4 << e5 << e6 << e7
+# w3.exercises << e7 << e8 << e9 << e10 << e11 << e12
 #
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+# puts "putting exercises into workouts"

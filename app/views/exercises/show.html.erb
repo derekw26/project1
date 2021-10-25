@@ -1,0 +1,15 @@
+<h1><%= @exercise.name %></h1>
+
+<%= image_tag @exercise.image, :class => 'feature' if @exercise.image.present? %>
+
+<ul>
+  <li>Equipment: <%= @exercise.equipment %></li>
+  <li>Body Part: <%= @exercise.body_part %></li>
+</ul>
+
+<p><%= @exercise.description %></p>
+
+<div class="controls">
+  <%= button_to 'Edit exercise', edit_exercise_path(@exercise), :method => 'get' %>
+  <%= button_to 'Delete exercise', @exercise, :method => 'delete', :data => { :confirm => 'Are you sure you want to delete this exercise?' } %>
+</div>

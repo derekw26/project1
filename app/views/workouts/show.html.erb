@@ -1,0 +1,20 @@
+<h1><%= @workout.name %></h1>
+
+<ol>
+  <% @workout.rounds.each do |round| %>
+  <%= image_tag round.exercise.image, :class => 'feature' if round.exercise.image.present? %>
+
+  <li><%= round.exercise.name %>
+    <ul>
+      <li>Sets: <%= round.sets %></li>
+      <li>Reps: <%= round.reps %></li>
+    </ul>
+  </li>
+
+  <% end %>
+</ol>
+
+<div class="controls">
+  <%= button_to 'Edit workout', edit_workout_path(@workout), :method => 'get' %>
+  <%= button_to 'Delete workout', @workout, :method => 'delete', :data => { :confirm => 'Are you sure you want to delete this workout?' } %>
+</div>

@@ -1,0 +1,9 @@
+<h1>Exercise Index</h1>
+
+<h2><%= Exercise.count %> exercises</h2>
+
+<% @exercises.each do |exercise| %>
+  <p><%= link_to exercise.name, exercise %></p>
+
+  <%= image_tag exercise.image, :class => 'thumb' if exercise.image.present? %>
+<% end %>

@@ -1,0 +1,16 @@
+<%= form_for @round do |f| %>
+
+  <%= f.label :sets, "Number of sets" %>
+  <%= f.text_field :sets %>
+
+  <%= f.label :reps, "Number of reps" %>
+  <%= f.text_field :reps %>
+
+  <%= f.label :time, "Time" %>
+  <%= f.text_field :time %>
+
+  <%= f.select :exercises %>
+
+  <%= f.submit %>
+
+<% end %>

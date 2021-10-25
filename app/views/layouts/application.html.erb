@@ -1,15 +1,40 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Project1</title>
+    <title>Workout Planner</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="/assets/jquery-3.6.0.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
   </head>
 
   <body>
+  <nav>
+    <%= link_to 'Home', root_path %>
+    |
+    <%= link_to "Exercises", exercises_path %>
+    |
+    <%= link_to "New Exercise", new_exercise_path %>
+    |
+    <%= link_to "Workouts", workouts_path %>
+    |
+    <%= link_to "Create Workout", new_workout_path %>
+    ||
+    <% if @current_user.present? %>
+      <% if @current_user.admin? %>
+        <%= link_to 'All Users', users_path %>
+        |
+      <% end %>
+      <%= link_to "Log Out #{ @current_user.email }", login_path, :method => 'delete' %>
+    <% else %>
+      <%= link_to 'Sign up', new_user_path %>
+      |
+      <%= link_to 'Log in', login_path %>
+    <% end %>
+  </nav>
     <%= yield %>
   </body>
 </html>

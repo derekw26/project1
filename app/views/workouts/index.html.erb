@@ -1,0 +1,7 @@
+<h1>Workout Index</h1>
+
+<h2><%= Workout.count %> workouts</h2>
+
+<% @workouts.each do |workout| %>
+  <p><%= link_to workout.name, workout %></p>
+<% end %>

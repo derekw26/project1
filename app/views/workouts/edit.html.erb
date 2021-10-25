@@ -1,0 +1,10 @@
+<h1>Edit Workout</h1>
+
+<%= form_for @workout do |f| %>
+  <%= f.label :name  %>
+  <%= f.text_field :name, :required => true %>
+
+  <%= f.submit %>
+<% end %>
+
+<h2>Add Exercises</h2>
