@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :exercises
   resources :workouts do
-    resources :rounds, :except => [:index, :show], :shallow => true
+    resources :rounds, :except => [:index, :show]
   end
 
 end

@@ -7,26 +7,26 @@ class RoundsController < ApplicationController
 
   def create
     @workout = Workout.find params[:workout_id]
-    @exercise = Exercise.find params[:exercise_id]
+    @exercise = Exercise.find params[:round][:exercise_id]
     @round = Round.create round_params
-    @round.workout = @workout
-    # render :nothing => true
+    redirect_to edit_workout_path(@workout)
   end
 
   def edit
     @round = Round.find params[:id]
+    @workout = Workout.find params[:workout_id]
   end
 
   def update
     round = Round.find params[:id]
     round.update round_params
-    redirect_to round
+    redirect_to edit_workout_path(params[:workout_id])
   end
 
   def destroy
     round = Round.find params[:id]
     round.destroy
-    redirect_to workout_path
+    redirect_to edit_workout_path(params[:workout_id])
   end
 
   private

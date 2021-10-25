@@ -28,6 +28,12 @@ puts "#{ Workout.count } workouts created"
 
 # associations
 
+Round.destroy_all
+r1 = Round.create :sets => 5, :reps => 4
+
+w1.rounds << r1
+e1.rounds << r1
+
 # w1.exercises << e1 << e2 << e3 << e12
 # w2.exercises << e4 << e5 << e6 << e7
 # w3.exercises << e7 << e8 << e9 << e10 << e11 << e12

@@ -7,4 +7,23 @@
   <%= f.submit %>
 <% end %>
 
-<h2>Add Exercises</h2>
+<h2><%= link_to "Add New Exercise", new_workout_round_path(@workout) %></h2>
+
+<h2>Exercises in this workout </h2>
+
+<% @rounds.each do |round| %>
+  <h4><%= (Exercise.find round['exercise_id']).name %></h4>
+  <ul>
+    <% if round.sets.present? %>
+      <li>Sets: <%= round.sets %></li>
+    <% end %>
+    <% if round.reps.present? %>
+      <li>Reps: <%= round.reps %></li>
+    <% end %>
+    <% if round.time.present? %>
+      <li>Time: <%= round.time %></li>
+    <% end %>
+    <%= button_to "Edit Round", edit_workout_round_path(@workout, round), :method => "get" %>
+    <%= button_to "Remove Round", [@workout, round], :method => "delete" %>
+  </ul>
+<% end %>

@@ -6,7 +6,6 @@ class WorkoutsController < ApplicationController
 
   def show
     @workout = Workout.find params[:id]
-    # @rounds = Round.find_by(:workout_id)
   end
 
   def new
@@ -21,7 +20,7 @@ class WorkoutsController < ApplicationController
 
   def edit
     @workout = Workout.find params[:id]
-
+    @rounds = @workout.rounds
   end
 
   def update
