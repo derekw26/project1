@@ -19,7 +19,7 @@ class RoundsController < ApplicationController
 
   def search
     refresh_token
-    url = "http://204.235.60.194/exrxapi/v1/allinclusive/exercises?" + "apparatus=#{search_params[:apparatus]}" + "&" + "bodypart=#{search_params[:bodypart]}" + "&" "exercisename=#{search_params[:exercisename]}"
+    url = "http://204.235.60.194/exrxapi/v1/allinclusive/exercises?" + "apparatus=#{search_params[:apparatus]}" + "&" + "bodypart=#{search_params[:bodypart]}" + "&" + "exercisename=#{search_params[:exercisename]}"
     response = RestClient::Request.execute(
       method: :get,
       url: url,
