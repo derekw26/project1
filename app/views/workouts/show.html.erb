@@ -4,7 +4,7 @@
 
   <% @rounds.each do |round| %>
     <% @obj["exercises"].each do |exercise| %>
-      <% if exercise["Exercise_Id"] == round['exercise_id'] %>
+      <% if exercise["Exercise_Id"].to_s == round['exercise_id'].to_s %>
       <div class="row">
         <div class="col">
         <li>

@@ -8,6 +8,7 @@ class WorkoutsController < ApplicationController
       string_value: obj['token'],
       time_created: Time.now
     }
+    puts obj
   end
 
   def refresh_token
