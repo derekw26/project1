@@ -1,7 +1,10 @@
-<h1>All Users</h1>
+<h1 class="mt-5 mb-3">All Users</h1>
 
-<h2><%= User.count %> users</h2>
+<h2 class="mb-3"><%= User.count %> users</h2>
 
 <% @users.each do |user| %>
-  <p> <%= user.email %></p>
+  <p><%= user.email %>
+  <% if user.admin? %>
+  <strong class="ms-3 text-danger">ADMIN</strong></p>
+  <% end %>
 <% end %>

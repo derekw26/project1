@@ -58,7 +58,9 @@ class RoundsController < ApplicationController
     @id_array = []
     @id_array << @round['exercise_id']
     @obj = search_exercise_id
-
+    if params[:search] != nil
+      @obj = search
+    end
   end
 
   def update
@@ -79,6 +81,6 @@ class RoundsController < ApplicationController
   end
 
   def round_params
-    params.require(:round).permit(:exercise_id, :workout_id, :sets, :reps, :time)
+    params.require(:round).permit(:exercise_id, :workout_id, :sets, :reps, :time, :weight, :order)
   end
 end

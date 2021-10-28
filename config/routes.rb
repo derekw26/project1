@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  root :to => 'pages#home'
+  root :to => 'session#new'
+  get '/home'=> 'pages#home'
+  get '/token' => 'workouts#get_token'
 
   resources :users, :only => [:index, :new, :create]
   get '/login' => 'session#new'

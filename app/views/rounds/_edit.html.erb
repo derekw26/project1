@@ -3,13 +3,17 @@
 
   <% if @obj["exercises"].empty? || @obj["exercises"].nil? %>
     No exercises matching your search.
-  <% else %>
-    <% @obj["exercises"].each do |exercise| %>
 
+  <% elsif @obj["exercises"].class == Hash %>
 
-      <div class="exercise">
-        <input type="radio" name="round[exercise_id]" value="<%= exercise["Exercise_Id"] %>"/>
-          <%= exercise["Exercise_Name_Complete"]  %>
+  <h4 class="mt-4 mb-3">Select an exercise below:</h4>
+
+    <% @obj["exercises"].each_value do |exercise| %>
+
+      <div class="row">
+        <div class="col">
+          <input class="me-2" type="radio" name="round[exercise_id]" value="<%= exercise["Exercise_Id"] %>" required>
+          <b><u><%= exercise["Exercise_Name_Complete"] %></u></b>
           <ul>
             <li>
               Equipment: <%= exercise["Apparatus_Name"] %>
@@ -18,11 +22,36 @@
               Muscle Group: <%= exercise["Target_Muscle_Group"] %>
             </li>
           </ul>
-          <p><%= image_tag exercise["GIF_Img"] %> </p>
+        </div>
+        <div class="col-9">
+          <p class="ms-3"><%= image_tag exercise["GIF_Img"] %> </p>
+        </div>
       </div>
-
     <% end %>
+  <% else %>
+  <% @obj["exercises"].each do |exercise| %>
+
+  <h4 class="mt-4 mb-3">Current exercise:</h4>
+
+    <div class="row">
+      <div class="col">
+      <input class="me-2" type="radio" name="round[exercise_id]" value="<%= exercise["Exercise_Id"] %>" checked required>
+        <b><u><%= exercise["Exercise_Name_Complete"] %></u></b>
+        <ul>
+          <li>
+            Equipment: <%= exercise["Apparatus_Name"] %>
+          </li>
+          <li>
+            Muscle Group: <%= exercise["Target_Muscle_Group"] %>
+          </li>
+        </ul>
+      </div>
+      <div class="col-9">
+        <p class="ms-3"><%= image_tag exercise["GIF_Img"] %> </p>
+      </div>
+    </div>
   <% end %>
+<% end %>
 
 <% unless @obj["exercises"].empty? || @obj["exercises"].nil? %>
 
@@ -30,17 +59,22 @@
 
     <div class="mb-3">
       <%= f.label :sets, "Number of sets", :class => 'form-label' %>
-      <%= f.text_field :sets, :class => 'form-control' %>
+      <%= f.text_field :sets, :placeholder => "Optional", :class => 'form-control' %>
     </div>
 
     <div class="mb-3">
       <%= f.label :reps, "Number of reps", :class => 'form-label' %>
-      <%= f.text_field :reps, :class => 'form-control' %>
+      <%= f.text_field :reps, :placeholder => "Optional", :class => 'form-control' %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :weight, "Weight (kg)", :class => 'form-label' %>
+      <%= f.text_field :weight, :placeholder => "Optional", :class => 'form-control' %>
     </div>
 
     <div class="mb-3">
       <%= f.label :time, "Time", :class => 'form-label' %>
-      <%= f.text_field :time, :class => 'form-control' %>
+      <%= f.text_field :time, :placeholder => "Optional", :class => 'form-control' %>
     </div>
 
     <%= f.submit "Update Exercise", :class => "btn btn-primary" %>

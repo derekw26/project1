@@ -1,7 +1,8 @@
-<h1>Your Workouts</h1>
-
-<h3 class="mb-3"><%= @workouts.count %> workouts</h3>
+<h1 class="mt-5 mb-3 animate__animated animate__bounce">Your Workouts</h1>
 
 <% @workouts.each do |workout| %>
-  <p><%= link_to workout.name, workout %></p>
+  <h4><%= link_to workout.name, workout %></h4>
 <% end %>
+
+<h3 class="mt-4 mb-3"><%= @workouts.count %> workouts</h3>
+<%= button_to 'Add New Workout', new_workout_path, :method => 'get', :class => 'btn btn-primary btn-lg' %>

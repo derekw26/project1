@@ -34,7 +34,7 @@ class WorkoutsController < ApplicationController
 
   def show
     @workout = Workout.find params[:id]
-    @rounds =  @workout.rounds
+    @rounds = @workout.rounds
     @id_array = []
     @rounds.each do |round|
       @id_array << round['exercise_id']
@@ -54,7 +54,7 @@ class WorkoutsController < ApplicationController
 
   def edit
     @workout = Workout.find params[:id]
-    @rounds =  @workout.rounds
+    @rounds = @workout.rounds
     @id_array = []
     @rounds.each do |round|
       @id_array << round['exercise_id']
