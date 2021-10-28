@@ -10,25 +10,37 @@
   <%= f.submit "Update Workout Name", :class => "btn btn-primary" %>
 <% end %>
 
-<h2><%= button_to "Add New Exercise", new_workout_round_path(@workout), :method => "get", :class => "btn btn-primary" %></h2>
+<h2><%= button_to "Add New Exercise", new_workout_round_path(@workout), :method => "get", :class => "btn btn-success" %></h2>
 
 <h2>Exercises in this workout </h2>
+<ol>
+  <% @rounds.each do |round| %>
+    <% @obj["exercises"].each do |exercise| %>
+      <% if exercise["Exercise_Id"] == round['exercise_id'] %>
+      <li>
+        <h5><%= "#{exercise["Exercise_Name_Complete"]}" %></h5>
 
-<% @rounds.each do |round| %>
-  <h4><%= "Exercise Name" %></h4>
-  <ul>
-    <% if round.sets.present? %>
-      <li>Sets: <%= round.sets %></li>
-    <% end %>
-    <% if round.reps.present? %>
-      <li>Reps: <%= round.reps %></li>
-    <% end %>
-    <% if round.time.present? %>
-      <li>Time: <%= round.time %></li>
-    <% end %>
-    <%= button_to "Edit Round", edit_workout_round_path(@workout, round), :method => "get" %>
-    <%= button_to "Remove Round", [@workout, round], :method => "delete" %>
-  </ul>
-<% end %>
+          <% if round.reps.present? %>
+            <p>
+              <%= "#{round.sets} x #{round.reps} reps" %>
+            </p>
+          <% end %>
+          <% if round.time.present? %>
+            <p>
+              <%= "#{round.sets} x #{round.time}" %>
+            </p>
+          <% end %>
+            <p>
+              <%= image_tag exercise["GIF_Img"] %>
+            </p>
+        <% end %>
+      <% end %>
+        <div class="mb-4 edit_options">
+            <%= button_to "Edit Round", edit_workout_round_path(@workout, round), :method => "get", :class => 'btn btn-primary btn-sm'%>
+            <%= button_to "Remove Round", [@workout, round], :method => "delete", :class => 'btn btn-danger btn-sm' %>
+        </div>
+      </li>
+  <% end %>
+</ol>
 
 <%= link_to 'Go Back', :back %>

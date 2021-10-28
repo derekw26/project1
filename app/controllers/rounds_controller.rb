@@ -27,6 +27,17 @@ class RoundsController < ApplicationController
     return JSON.parse response
   end
 
+  def search_exercise_id
+    refresh_token
+    url = "http://204.235.60.194/exrxapi/v1/allinclusive/exercises?" + "exerciseids=#{@id_array}"
+    response = RestClient::Request.execute(
+      method: :get,
+      url: url,
+      headers: { :Authorization => ('Bearer ' + $token[:string_value]) }
+    )
+    return JSON.parse response
+  end
+
   def new
     @workout = Workout.find params[:workout_id]
     @round = Round.new
@@ -42,8 +53,12 @@ class RoundsController < ApplicationController
   end
 
   def edit
-    @round = Round.find params[:id]
     @workout = Workout.find params[:workout_id]
+    @round = Round.find params[:id]
+    @id_array = []
+    @id_array << @round['exercise_id']
+    @obj = search_exercise_id
+
   end
 
   def update

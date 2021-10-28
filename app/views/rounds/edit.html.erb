@@ -1,3 +1,15 @@
-<h1>Edit Round for <%= @workout.name %></h1>
+<h1>Edit exercise for <%= @workout.name %></h1>
 
-<%= render :partial => 'form' %>
+<%# Search FORM %>
+<div class='mb-3'>
+  <%= render :partial => 'search' %>
+</div>
+
+<%# Edit FORM - show chosen exercise %>
+<div class="mt-3">
+  <%= render :partial => 'edit' %>
+</div>
+
+<div class="mt-3">
+  <%= link_to 'Go Back', :back %>
+</div>

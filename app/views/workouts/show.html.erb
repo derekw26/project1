@@ -1,15 +1,27 @@
 <h1><%= @workout.name %></h1>
 
 <ol>
-  <% @workout.rounds.each do |round| %>
-
-  <li><%= "Exercise name: #{round.sets} x #{round.reps} reps" %>
-  </li>
-
+  <% @rounds.each do |round| %>
+    <% @obj["exercises"].each do |exercise| %>
+      <% if exercise["Exercise_Id"] == round['exercise_id'] %>
+        <li>
+          <strong><%= "#{exercise["Exercise_Name_Complete"]}" %></strong>
+        </li>
+        <p>
+          <%= "#{round.sets} x #{round.reps} reps" %>
+        </p>
+        <p>
+          <%= image_tag exercise["GIF_Img"] %>
+        </p>
+        <p>
+          <%= "#{exercise["Instructions_Preparation"] + " " + exercise["Instructions_Execution"]}" %>
+        </p>
+      <% end %>
+    <% end %>
   <% end %>
 </ol>
 
 <div class="controls">
-  <%= button_to 'Edit workout', edit_workout_path(@workout), :method => 'get' %>
-  <%= button_to 'Delete workout', @workout, :method => 'delete', :data => { :confirm => 'Are you sure you want to delete this workout?' } %>
+  <%= button_to 'Edit workout', edit_workout_path(@workout), :method => 'get', :class => 'ms-4 btn btn-primary' %>
+  <%= button_to 'Delete workout', @workout, :method => 'delete', :class => ' ms-4 mt-2 btn btn-danger', :data => { :confirm => 'Are you sure you want to delete this workout?' } %>
 </div>

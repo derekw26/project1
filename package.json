@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "animate.css": "^4.1.1",
+    "bootstrap-icons": "^1.6.1",
     "tailwindcss": "^2.2.17"
   }
 }

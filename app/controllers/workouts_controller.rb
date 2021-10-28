@@ -1,11 +1,45 @@
 class WorkoutsController < ApplicationController
 
+  def get_token
+    url = "http://204.235.60.194/consumer/login"
+    data = RestClient.post url, {username: "derekexrx", password: "b89Te5ry"}
+    obj = JSON.parse data
+    $token = {
+      string_value: obj['token'],
+      time_created: Time.now
+    }
+  end
+
+  def refresh_token
+    if 3500 < Time.now - $token[:time_created]
+      get_token
+    end
+  end
+
+  def search_exercise_id
+    refresh_token
+    url = "http://204.235.60.194/exrxapi/v1/allinclusive/exercises?" + "exerciseids=#{@id_array}"
+    response = RestClient::Request.execute(
+      method: :get,
+      url: url,
+      headers: { :Authorization => ('Bearer ' + $token[:string_value]) }
+    )
+    return JSON.parse response
+  end
+
+
   def index
       @workouts = @current_user.workouts
   end
 
   def show
     @workout = Workout.find params[:id]
+    @rounds =  @workout.rounds
+    @id_array = []
+    @rounds.each do |round|
+      @id_array << round['exercise_id']
+    end
+    @obj = search_exercise_id
   end
 
   def new
@@ -20,7 +54,12 @@ class WorkoutsController < ApplicationController
 
   def edit
     @workout = Workout.find params[:id]
-    @rounds = @workout.rounds
+    @rounds =  @workout.rounds
+    @id_array = []
+    @rounds.each do |round|
+      @id_array << round['exercise_id']
+    end
+    @obj = search_exercise_id
   end
 
   def update

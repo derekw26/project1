@@ -7,10 +7,11 @@ Rails.application.routes.draw do
   post '/login' => 'session#create'
   delete '/login' => 'session#destroy'
 
-  get '/cardio' => 'workouts#cardio'
-  get '/schedule' => 'workouts#schedule'
+  get '/running' => 'pages#running'
+  get '/schedule' => 'pages#schedule'
 
   post '/workouts/:workout_id/rounds/new' => 'rounds#new'
+  post '/workouts/:workout_id/rounds/:id/edit' => 'rounds#edit'
 
   resources :workouts do
     resources :rounds, :except => [:index, :show]

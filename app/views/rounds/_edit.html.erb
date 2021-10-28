@@ -1,38 +1,14 @@
-<h2>Results</h2>
 
 <%= form_for [@workout, @round] do |f| %>
-
-  <p>You searched for -
-    Equipment:
-    <span class="text-primary">
-      <%= params[:search][:apparatus]%>
-    </span>
-    |
-    Body Part:
-    <span class="text-primary">
-      <%= params[:search][:bodypart]%>
-    </span>
-    <% unless params[:search][:exercisename].empty? %>
-      |
-      Exercise Name:
-      <span class="text-primary">
-        <%= params[:search][:exercisename]%>
-      </span>
-    <% end %>
-  </p>
 
   <% if @obj["exercises"].empty? || @obj["exercises"].nil? %>
     No exercises matching your search.
   <% else %>
+    <% @obj["exercises"].each do |exercise| %>
 
-    <p>Select an exercise below:</p>
-
-    <% @obj["exercises"].each_value do |exercise| %>
 
       <div class="exercise">
-
         <input type="radio" name="round[exercise_id]" value="<%= exercise["Exercise_Id"] %>"/>
-
           <%= exercise["Exercise_Name_Complete"]  %>
           <ul>
             <li>
@@ -67,7 +43,7 @@
       <%= f.text_field :time, :class => 'form-control' %>
     </div>
 
-    <%= f.submit %>
+    <%= f.submit "Update Exercise", :class => "btn btn-primary" %>
 
   <% end %>
 <% end %>
