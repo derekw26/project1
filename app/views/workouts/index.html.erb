@@ -1,6 +1,6 @@
-<h1>Workout Index</h1>
+<h1>Your Workouts</h1>
 
-<h2><%= Workout.count %> workouts</h2>
+<h3 class="mb-3"><%= @workouts.count %> workouts</h3>
 
 <% @workouts.each do |workout| %>
   <p><%= link_to workout.name, workout %></p>

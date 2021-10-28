@@ -2,14 +2,10 @@
 
 <ol>
   <% @workout.rounds.each do |round| %>
-  <%= image_tag (Exercise.find round['exercise_id']).image , :class => 'feature' if (Exercise.find round['exercise_id']).image.present? %>
 
-  <li><%= (Exercise.find round['exercise_id']).name %>
-    <ul>
-      <li>Sets: <%= round.sets %></li>
-      <li>Reps: <%= round.reps %></li>
-    </ul>
+  <li><%= "Exercise name: #{round.sets} x #{round.reps} reps" %>
   </li>
+
   <% end %>
 </ol>
 

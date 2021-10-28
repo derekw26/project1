@@ -1,2 +1,34 @@
-<h1>Home Page coming soon</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h1 class=" mb-5 animate__animated animate__bounce">Come get fit</h1>
+
+<div class="row">
+  <div class="col">
+    <div class="card animate__animated animate__backInUp" style="width: 18rem;">
+      <img src="https://cdn-icons-png.flaticon.com/512/4583/4583124.png" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Workouts</h5>
+        <p class="card-text">A collection of strength based exercises. Access all your workouts here. </p>
+        <a href="#" class="btn btn-primary">Go to Workouts</a>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card animate__animated animate__backInUp" style="width: 18rem;">
+      <img src="https://cdn-icons-png.flaticon.com/512/4598/4598559.png" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Cardio</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href= <%= cardio_path %> class="btn btn-primary">Go to Cardio</a>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card animate__animated animate__backInUp" style="width: 18rem;">
+      <img src="https://cdn-icons-png.flaticon.com/512/3703/3703453.png" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Schedule</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href= <%= schedule_path %> class="btn btn-primary">Go to Schedule</a>
+      </div>
+    </div>
+  </div>
+</div>

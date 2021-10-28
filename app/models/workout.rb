@@ -4,5 +4,5 @@ class Workout < ApplicationRecord
   has_many :rounds
   has_many :exercises, :through => :rounds
 
-  belongs_to :user
+  belongs_to :user, :optional => true
 end

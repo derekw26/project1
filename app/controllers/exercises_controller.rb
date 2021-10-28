@@ -1,6 +1,15 @@
 class ExercisesController < ApplicationController
+  before_action :check_for_admin, :only => [:create, :update]
+
   def index
     @exercises = Exercise.all
+    redirect_to api_search_path
+  end
+
+  def cardio
+  end
+
+  def schedule
   end
 
   def show

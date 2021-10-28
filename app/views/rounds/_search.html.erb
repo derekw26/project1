@@ -1,0 +1,40 @@
+<h2>Search</h2>
+
+<%= form_for :search , :method => "post" do |f|  %>
+
+  <div class="mb-3">
+    <%= f.label :apparatus, "Equipment:", :class => 'form-label' %>
+    <%= f.select :apparatus,
+    [
+      "Bodyweight",
+      "Dumbbell",
+      "Barbell",
+      "Cable"
+    ],
+    {}, {:required => true, :class => 'form-select'} %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :bodypart, "Body Part:", :class => 'form-label' %>
+    <%= f.select :bodypart,
+    [
+      "Back",
+      "Chest",
+      "Shoulders",
+      "Upper Arms",
+      "Forearms",
+      "Waist",
+      "Hips",
+      "Thighs",
+      "Calves"
+    ],
+    {}, {:required => true, :class => 'form-select' } %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :exercisename, "Exercise Name", :class => 'form-label' %>
+    <%= f.text_field :exercisename, :class => 'form-control' %>
+  </div>
+
+  <%= f.submit "Search", :class => 'btn btn-primary' %>
+<% end %>

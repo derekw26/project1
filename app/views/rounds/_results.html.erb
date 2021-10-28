@@ -1,0 +1,73 @@
+<h2>Results</h2>
+
+<%= form_for [@workout, @round] do |f| %>
+
+  <p>You searched for -
+    Equipment:
+    <span class="text-primary">
+      <%= params[:search][:apparatus]%>
+    </span>
+    |
+    Body Part:
+    <span class="text-primary">
+      <%= params[:search][:bodypart]%>
+    </span>
+    <% unless params[:search][:exercisename].empty? %>
+      |
+      Exercise Name:
+      <span class="text-primary">
+        <%= params[:search][:exercisename]%>
+      </span>
+    <% end %>
+  </p>
+
+  <% if @obj["exercises"].empty? || @obj["exercises"].nil? %>
+    No exercises matching your search.
+  <% else %>
+
+    <p>Select an exercise below:</p>
+
+    <% @obj["exercises"].each_value do |exercise| %>
+
+      <div class="exercise">
+
+        <input type="radio" name="round[exercise_id]" value="<%= exercise["Exercise_Id"] %>"/>
+
+          <%= exercise["Exercise_Name_Complete"]  %>
+          <ul>
+            <li>
+              Equipment: <%= exercise["Apparatus_Name"] %>
+            </li>
+            <li>
+              Muscle Group: <%= exercise["Target_Muscle_Group"] %>
+            </li>
+          </ul>
+          <p><%= image_tag exercise["GIF_Img"] %> </p>
+      </div>
+
+    <% end %>
+  <% end %>
+
+<% unless @obj["exercises"].empty? || @obj["exercises"].nil? %>
+
+  <%= f.hidden_field :workout_id, value: @workout.id %>
+
+    <div class="mb-3">
+      <%= f.label :sets, "Number of sets", :class => 'form-label' %>
+      <%= f.text_field :sets, :class => 'form-control' %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :reps, "Number of reps", :class => 'form-label' %>
+      <%= f.text_field :reps, :class => 'form-control' %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :time, "Time", :class => 'form-label' %>
+      <%= f.text_field :time, :class => 'form-control' %>
+    </div>
+
+    <%= f.submit %>
+
+  <% end %>
+<% end %>

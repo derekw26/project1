@@ -4,9 +4,9 @@ u1 = User.create :email => 'derek.wei94@gmail.com', :password => 'asdasd', :admi
 puts "#{ User.count } users created"
 
 Exercise.destroy_all
-e1 = Exercise.create :name => 'Bench Press', :equipment => 'Barbell', :body_part => 'Chest, Triceps, Shoulders'
-e2 = Exercise.create :name => 'Back Squat', :equipment => 'Barbell', :body_part => 'Legs, Core'
-e3 = Exercise.create :name => 'Deadlift', :equipment => 'Barbell', :body_part => 'Legs, Back, Core'
+e1 = Exercise.create :name => 'Bench Press', :equipment => 'Barbell', :body_part => 'Chest, Triceps, Shoulders', :image => 'https://i.gifer.com/MH2W.gif'
+e2 = Exercise.create :name => 'Back Squat', :equipment => 'Barbell', :body_part => 'Legs, Core', :image => 'https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/barbell-squat.gif?resize=480:*'
+e3 = Exercise.create :name => 'Deadlift', :equipment => 'Barbell', :body_part => 'Legs, Back, Core', :image => 'https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/deadlift.gif?crop=1xw:1xh;center,top&resize=480:*'
 e4 = Exercise.create :name => 'Bicep Curl', :equipment => 'Dumbbell', :body_part => 'Biceps'
 e5 = Exercise.create :name => 'Tricep Extension', :equipment => 'Dumbbell', :body_part => 'Triceps'
 e6 = Exercise.create :name => 'Shoulder Press', :equipment => 'Dumbbell, Barbell', :body_part => 'Shoulders'

@@ -1,4 +1,4 @@
-<h1>Sign up!</h1>
+<h1 class='animate__animated animate__bounce'>Sign up</h1>
 
 <% if @user.errors.any? %>
   <ol>
@@ -9,14 +9,21 @@
 <% end %>
 
 <%= form_for @user do |f| %>
-  <%= f.label :email %>
-  <%= f.email_field :email %>
 
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+  <div class="mb-3">
+    <%= f.label :email, :class => 'form-label' %>
+    <%= f.email_field :email, :class => 'form-control' %>
+  </div>
 
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
+  <div class="mb-3">
+    <%= f.label :password, :class => 'form-label' %>
+    <%= f.password_field :password, :class => 'form-control' %>
+  </div>
 
-  <%= f.submit "Sign up!" %>
+  <div class="mb-3">
+    <%= f.label :password_confirmation, :class => 'form-label' %>
+    <%= f.password_field :password_confirmation, :class => 'form-control'  %>
+  </div>
+
+  <%= f.submit "Sign up!", :class => 'btn btn-primary btn-lg' %>
 <% end %>

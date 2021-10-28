@@ -1,18 +1,21 @@
 <h1>Edit Workout</h1>
 
 <%= form_for @workout do |f| %>
-  <%= f.label :name  %>
-  <%= f.text_field :name, :required => true %>
 
-  <%= f.submit %>
+  <div class="mb-3">
+    <%= f.label :name, :class => 'form-label' %>
+    <%= f.text_field :name, :required => true, :class => 'form-control' %>
+  </div>
+
+  <%= f.submit "Update Workout Name", :class => "btn btn-primary" %>
 <% end %>
 
-<h2><%= link_to "Add New Exercise", new_workout_round_path(@workout) %></h2>
+<h2><%= button_to "Add New Exercise", new_workout_round_path(@workout), :method => "get", :class => "btn btn-primary" %></h2>
 
 <h2>Exercises in this workout </h2>
 
 <% @rounds.each do |round| %>
-  <h4><%= (Exercise.find round['exercise_id']).name %></h4>
+  <h4><%= "Exercise Name" %></h4>
   <ul>
     <% if round.sets.present? %>
       <li>Sets: <%= round.sets %></li>
@@ -27,3 +30,5 @@
     <%= button_to "Remove Round", [@workout, round], :method => "delete" %>
   </ul>
 <% end %>
+
+<%= link_to 'Go Back', :back %>

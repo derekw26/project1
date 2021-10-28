@@ -1,11 +1,14 @@
-<h1>Log In</h1>
+<h1 class='animate__animated animate__bounce'>Log In</h1>
 
 <%= form_tag login_path do %>
-  <%= label_tag :email %>
-  <%= email_field_tag :email %>
+  <div class="mb-3">
+    <%= label_tag :email %>
+    <%= email_field_tag :email, nil, :class => 'form-control' %>
+  </div>
 
-  <%= label_tag :password %>
-  <%= password_field_tag :password %>
-
-  <%= submit_tag 'Sign in' %>
+  <div class="mb-3">
+    <%= label_tag :password %>
+    <%= password_field_tag :password, nil, :class => 'form-control' %>
+  </div>
+  <%= submit_tag 'Log in', :class => 'btn btn-primary btn-lg' %>
 <% end %>

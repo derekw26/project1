@@ -1,3 +1,17 @@
-<h1>Add round for <%= @workout.name %></h1>
+<h1 class='display-5'>Add exercise to <%= @workout.name %></h1>
 
-<%= render :partial => 'form' %>
+<%# Search FORM - only show after submitting search %>
+<div class='mb-3'>
+  <%= render :partial => 'search' %>
+</div>
+
+<%# Results FORM - only show after submitting search %>
+<% if params[:search] != nil %>
+<div class="mt-3">
+  <%= render :partial => 'results' %>
+</div>
+<% end %>
+
+<div class="mt-3">
+  <%= link_to 'Go Back', :back %>
+</div>

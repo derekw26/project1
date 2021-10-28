@@ -1,13 +1,42 @@
 class RoundsController < ApplicationController
 
+  def get_token
+    url = "http://204.235.60.194/consumer/login"
+    data = RestClient.post url, {username: "derekexrx", password: "b89Te5ry"}
+    obj = JSON.parse data
+    $token = {
+      string_value: obj['token'],
+      time_created: Time.now
+    }
+  end
+
+  def refresh_token
+    if 3500 < Time.now - $token[:time_created]
+      get_token
+    end
+  end
+
+  def search
+    refresh_token
+    url = "http://204.235.60.194/exrxapi/v1/allinclusive/exercises?" + "apparatus=#{search_params[:apparatus]}" + "&" + "bodypart=#{search_params[:bodypart]}" + "&" "exercisename=#{search_params[:exercisename]}"
+    response = RestClient::Request.execute(
+      method: :get,
+      url: url,
+      headers: { :Authorization => ('Bearer ' + $token[:string_value]) }
+    )
+    return JSON.parse response
+  end
+
   def new
-    @round = Round.new
     @workout = Workout.find params[:workout_id]
+    @round = Round.new
+    if params[:search] != nil
+      @obj = search
+    end
   end
 
   def create
     @workout = Workout.find params[:workout_id]
-    @exercise = Exercise.find params[:round][:exercise_id]
     @round = Round.create round_params
     redirect_to edit_workout_path(@workout)
   end
@@ -30,6 +59,10 @@ class RoundsController < ApplicationController
   end
 
   private
+  def search_params
+    params.require(:search).permit(:apparatus, :exercisename, :bodypart)
+  end
+
   def round_params
     params.require(:round).permit(:exercise_id, :workout_id, :sets, :reps, :time)
   end
