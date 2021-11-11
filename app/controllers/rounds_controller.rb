@@ -12,7 +12,7 @@ class RoundsController < ApplicationController
   end
 
   def refresh_token
-    if 3500 < Time.now - $token[:time_created]
+    if $token.nil? || (3500 < Time.now - $token[:time_created])
       get_token
     end
   end
